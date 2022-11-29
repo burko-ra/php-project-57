@@ -1,0 +1,18 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+        - database/
+        - resources/
+        - routes/
+        - tests/
+
+    level: 8
+
+    ignoreErrors:
+        -
+            message: '#Undefined variable: \$this#'
+            path: routes/console.php
