@@ -73,8 +73,8 @@ lint-fix:
 # compose-down:
 # 	docker-compose down -v
 
-# ide-helper:
-# 	php artisan ide-helper:eloquent
-# 	php artisan ide-helper:gen
-# 	php artisan ide-helper:meta
-# 	php artisan ide-helper:mod -n
+ide-helper:
+	php artisan ide-helper:eloquent
+	php artisan ide-helper:gen
+	php artisan ide-helper:meta
+	php artisan ide-helper:mod -n
