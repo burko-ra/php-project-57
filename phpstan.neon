@@ -10,7 +10,18 @@ parameters:
         - routes/
         - tests/
 
-    level: 8
+    excludePaths:
+        - app/Console/Kernel.php
+        - app/Http/Controllers/Auth/*
+        - app/Http/Controllers/Controller.php
+        - app/Http/Requests/Auth/*
+        - server.php
+        - tests/Feature/Auth/*
+        - */migrations/*
+        - */seeds/*
+        - *.blade.php
+
+    level: 6
 
     ignoreErrors:
         -
