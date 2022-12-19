@@ -23,6 +23,9 @@ class UpdateTaskStatusRequest extends FormRequest
      */
     public function rules()
     {
+        /**
+        * @var object $taskStatus
+        */
         $taskStatus = $this->route('task_status');
         return [
             'name' => 'required|unique:task_statuses,name,' . $taskStatus->id
