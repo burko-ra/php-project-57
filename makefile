@@ -16,7 +16,7 @@ start-frontend:
 setup:
 	composer install
 	cp -n .env.example .env
-	php artisan key:gen --ansi
+	php artisan key:gen --ansi --force
 	touch database/database.sqlite
 	php artisan migrate --force
 	php artisan db:seed --force
