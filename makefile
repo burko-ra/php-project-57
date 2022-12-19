@@ -18,8 +18,8 @@ setup:
 	cp -n .env.example .env
 	php artisan key:gen --ansi
 	touch database/database.sqlite
-	php artisan migrate
-	php artisan db:seed
+	php artisan migrate --force
+	php artisan db:seed --force
 	npm ci
 	npm run build
 
