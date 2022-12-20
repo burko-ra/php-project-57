@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class TaskStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(TaskStatus::class, 'task_status', [
+            'except' => ['index'],
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,17 +56,6 @@ class TaskStatusController extends Controller
         return redirect()
             ->route('task_statuses.index');
     }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\TaskStatus  $taskStatus
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(TaskStatus $taskStatus)
-    // {
-    //     //
-    // }
 
     /**
      * Show the form for editing the specified resource.
