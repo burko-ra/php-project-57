@@ -16,9 +16,16 @@
                             <label for="name">Имя</label>
                         </div>
                         <div class="mt-2">
-                            <input class="rounded border-gray-300 w-1/3" name="name" type="text" value="{{ $taskStatus->name }}"
-                                id="name">
+                            <input class="rounded border-gray-300 w-1/3" name="name" type="text"
+                                value="{{ $taskStatus->name }}" id="name">
                         </div>
+                        @if ($errors->get('name'))
+                            @foreach ($errors->get('name') as $error)
+                                <div class="text-rose-600">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
                         <div class="mt-2">
                             <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                 type="submit" value="Обновить">
