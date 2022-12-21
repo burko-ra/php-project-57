@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,10 +17,10 @@ class TaskStatusSeeder extends Seeder
     public function run()
     {
         DB::table('task_statuses')->insert([
-            ['name' => 'новая'],
-            ['name' => 'завершена'],
-            ['name' => 'выполняется'],
-            ['name' => 'в архиве'],
+            ['name' => 'новая', 'created_at' => Carbon::now()],
+            ['name' => 'завершена', 'created_at' => Carbon::now()],
+            ['name' => 'выполняется', 'created_at' => Carbon::now()],
+            ['name' => 'в архиве', 'created_at' => Carbon::now()],
         ]);
     }
 }
