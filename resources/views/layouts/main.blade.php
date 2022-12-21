@@ -22,8 +22,9 @@
             <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
                 <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                     <a href="{{ route('home') }}" class="flex items-center">
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Менеджер
-                            задач</span>
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                            {{ __('layout.navbar_logo_text') }}
+                        </span>
                     </a>
 
                     <div class="flex items-center lg:order-2">
@@ -35,18 +36,18 @@
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                                 class="block bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded ml-2">
-                                {{ __('Выход') }}
+                                {{ __('layout.navbar_logout') }}
                             </a>
                         </form>
                         @else
                         <a href="{{ route('login') }}"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            Вход
+                            {{ __('layout.navbar_login') }}
                         </a>
 
                         <a href=" {{ route('register') }} "
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            Регистрация
+                            {{ __('layout.navbar_register') }}
                         </a>
                         @endauth
                     </div>
@@ -55,15 +56,15 @@
                         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                             <li>
                                 <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                    Задачи </a>
+                                    {{ __('layout.navbar_tasks') }} </a>
                             </li>
                             <li>
                                 <a href="{{ route('task_statuses.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                    Статусы </a>
+                                    {{ __('layout.navbar_task_statuses') }} </a>
                             </li>
                             <li>
                                 <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                    Метки </a>
+                                    {{ __('layout.navbar_task_tags') }} </a>
                             </li>
                         </ul>
                     </div>
