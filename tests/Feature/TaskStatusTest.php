@@ -12,8 +12,11 @@ class TaskStatusTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @var array<string, mixed>
+     */
+    private $data;
     private User $user;
-    private array $data;
     private TaskStatus $taskStatus;
 
     public function setUp(): void
@@ -78,7 +81,7 @@ class TaskStatusTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
 
-    public function testUserCanEditTaskStatuses()
+    public function testUserCanEditTaskStatuses(): void
     {
         $response = $this
             ->actingAs($this->user)
