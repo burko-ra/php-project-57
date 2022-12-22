@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'destroy_confirmation' => 'Вы уверены?',
     'form_label_name'  => 'Имя',
