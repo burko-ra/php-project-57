@@ -29,26 +29,26 @@
 
                     <div class="flex items-center lg:order-2">
                         @auth
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                            {{ Form::open(['route' => 'logout', 'method' => 'POST']) }}
+                                @csrf
 
-                            <a :href="route('logout')"
-                                onclick="event.preventDefault();
+                                <a :href="route('logout')"
+                                    onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                class="block bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded ml-2">
-                                {{ __('layout.navbar_logout') }}
-                            </a>
-                        </form>
+                                    class="block bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded ml-2">
+                                    {{ __('layout.navbar_logout') }}
+                                </a>
+                                {{ Form::close() }}
                         @else
-                        <a href="{{ route('login') }}"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            {{ __('layout.navbar_login') }}
-                        </a>
+                            <a href="{{ route('login') }}"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                {{ __('layout.navbar_login') }}
+                            </a>
 
-                        <a href=" {{ route('register') }} "
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            {{ __('layout.navbar_register') }}
-                        </a>
+                            <a href=" {{ route('register') }} "
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                {{ __('layout.navbar_register') }}
+                            </a>
                         @endauth
                     </div>
 
@@ -59,7 +59,8 @@
                                     {{ __('layout.navbar_tasks') }} </a>
                             </li>
                             <li>
-                                <a href="{{ route('task_statuses.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                                <a href="{{ route('task_statuses.index') }}"
+                                    class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                                     {{ __('layout.navbar_task_statuses') }} </a>
                             </li>
                             <li>
