@@ -85,7 +85,7 @@ class TaskStatusController extends Controller
         flash(__('layout.task_status_update_flash_success'))->success();
 
         return redirect()
-            ->route('task_statuses.index', compact('taskStatus'));
+            ->route('task_statuses.index');
     }
 
     /**
