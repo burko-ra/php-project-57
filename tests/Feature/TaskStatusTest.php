@@ -27,7 +27,7 @@ class TaskStatusTest extends TestCase
         $this->taskStatus = TaskStatus::factory()->create();
     }
 
-    public function testGuestCanViewTaskStatuses(): void
+    public function testGuestCanViewTaskStatusList(): void
     {
         $response = $this->get(route('task_statuses.index'));
         $response->assertOk();
@@ -59,7 +59,7 @@ class TaskStatusTest extends TestCase
 
     public function testGuestCannotDestroyTaskStatuses(): void
     {
-        $response = $this->get(route('task_statuses.create', [$this->taskStatus]));
+        $response = $this->delete(route('task_statuses.create', [$this->taskStatus]));
         $response->assertStatus(403);
     }
 
