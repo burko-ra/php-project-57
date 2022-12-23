@@ -11,9 +11,11 @@
                     {{ __('layout.task_status_index_header') }}
                 </x-page-title>
 
-                <x-responsive-link :href="route('task_statuses.create')">
-                    {{ __('layout.task_status_create_link') }}
-                </x-responsive-link>
+                <div>
+                    <x-responsive-link :href="route('task_statuses.create')">
+                        {{ __('layout.task_status_create_link') }}
+                    </x-responsive-link>
+                </div>
 
                 <table class="mt-4">
                     <thead class="border-b-2 border-solid border-black text-left">
