@@ -7,31 +7,22 @@
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="grid col-span-full">
                 <h1 class="mb-5">{{ __('layout.task_status_edit_header') }}</h1>
-                <form method="POST" action="{{ route('task_statuses.update', $taskStatus) }}" accept-charset="UTF-8"
-                    class="w-50">
+                {{ Form::open(['route' => ['task_statuses.update', $taskStatus], 'method' => 'PATCH', 'accept-charset' => 'UTF-8', 'class' => 'w-50']) }}
                     @csrf
-                    @method('PATCH')
                     <div class="flex flex-col">
                         <div>
-                            <label for="name">{{ __('layout.form_label_name') }}</label>
+                            {{ Form::label('name', __('layout.form_label_name')) }}
                         </div>
                         <div class="mt-2">
-                            <input class="rounded border-gray-300 w-1/3" name="name" type="text"
-                                value="{{ old('name') ?? $taskStatus->name }}" id="name">
+                            {{ Form::text('name', old('name') ?? $taskStatus->name, ['class' => 'rounded border-gray-300 w-1/3']) }}
                         </div>
-                        @if ($errors->get('name'))
-                            @foreach ($errors->get('name') as $error)
-                                <div class="text-rose-600">
-                                    {{ $error }}
-                                </div>
-                            @endforeach
-                        @endif
+                        <x-layout.input-error :messages="$errors->get('name')" />
+
                         <div class="mt-2">
-                            <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                type="submit" value="{{ __('layout.task_status_update_button') }}">
+                            {{ Form::submit(__('layout.task_status_update_button'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
                         </div>
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
         </div>
     </section>
