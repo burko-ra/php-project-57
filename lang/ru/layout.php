@@ -27,4 +27,27 @@ return [
     'task_status_update_flash_success' => 'Статус успешно изменён',
     'task_status_destroy_link'  => 'Удалить',
     'task_status_destroy_flash_success' => 'Статус успешно удалён',
+    'task_index_header' => 'Задачи',
+    'task_create_link' => 'Создать задачу',
+    'table_header_task_status'  => 'Статус',
+    'table_header_created_by'  => 'Автор',
+    'table_header_assigned_to'  => 'Исполнитель',
+    'task_create_header'  => 'Создать задачу',
+    'form_label_description'  => 'Описание',
+    'form_label_status_id'  => 'Статус',
+    'form_label_assigned_to_id'  => 'Исполнитель',
+    'form_label_labels'  => 'Метки',
+    'task_store_button'  => 'Создать',
+    'task_create_flash_success' => 'Задача успешно создана',
+    'task_edit_header'  => 'Изменение задачи',
+    'task_update_button'  => 'Обновить',
+    'task_update_flash_success' => 'Задача успешно изменена',
+    'task_destroy_flash_success' => 'Задача успешно удалена',
+    'task_show_header' => "Просмотр задачи: :name",
+
+
+
+
+
+
 ];
