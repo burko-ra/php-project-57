@@ -13,7 +13,7 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -42,7 +42,7 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -56,7 +56,7 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreTaskRequest $request, User $user)
     {
@@ -77,7 +77,7 @@ class TaskController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Task $task)
     {
@@ -88,7 +88,7 @@ class TaskController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Task $task)
     {
@@ -103,7 +103,7 @@ class TaskController extends Controller
      *
      * @param  \App\Http\Requests\UpdateTaskRequest  $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
@@ -118,17 +118,20 @@ class TaskController extends Controller
             ->route('tasks.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  \App\Models\Task  $task
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy(Task $task)
+    // {
+    //     //
+    // }
 
+    /**
+     * @return array<mixed>
+     */
     private function getAppointeeOptions()
     {
         $appointees = User::select('id', 'name')
@@ -140,6 +143,9 @@ class TaskController extends Controller
             ->toArray();
     }
 
+    /**
+     * @return array<mixed>
+     */
     private function getTaskStatusOptions()
     {
         $taskStatuses = TaskStatus::select('id', 'name')

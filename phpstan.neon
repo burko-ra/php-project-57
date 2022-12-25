@@ -27,3 +27,5 @@ parameters:
         -
             message: '#Undefined variable: \$this#'
             path: routes/console.php
+
+    checkGenericClassInNonGenericObjectType: false

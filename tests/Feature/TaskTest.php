@@ -10,6 +10,15 @@ use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
+    use RefreshDatabase;
+
+    /**
+     * @var array<string, mixed>
+     */
+    private $data;
+    private User $user;
+    private Task $task;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -97,6 +106,6 @@ class TaskTest extends TestCase
             ->delete(route('tasks.update', [$this->task]));
         $response->assertRedirect(route('tasks.index'));
         $response->assertSessionHasNoErrors();
-        $this->assertDatabaseMissing('tasks', $this->taskStatus->only('id'));
+        $this->assertDatabaseMissing('tasks', $this->task->only('id'));
     }
 }
