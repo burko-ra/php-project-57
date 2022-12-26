@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -99,11 +100,26 @@ class TaskStatusTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
 
-    public function testUserCanDestroyTaskStatuses(): void
+    public function testCannotDestroyTaskStatusUsedByTask(): void
     {
+        $taskData = Task::factory()->make()->only('name', 'description');
+        $task = new Task($taskData);
+        $task->created_by_id = $this->user->id;
+        $task->status_id = $this->taskStatus->id;
+        $task->save();
+
         $response = $this
             ->actingAs($this->user)
-            ->delete(route('task_statuses.update', [$this->taskStatus]));
+            ->delete(route('task_statuses.destroy', [$this->taskStatus]));
+        $response->assertRedirect(route('task_statuses.index'));
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('task_statuses', $this->taskStatus->only('id'));
+
+        $task->delete();
+
+        $response = $this
+            ->actingAs($this->user)
+            ->delete(route('task_statuses.destroy', [$this->taskStatus]));
         $response->assertRedirect(route('task_statuses.index'));
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseMissing('task_statuses', $this->taskStatus->only('id'));
