@@ -47,6 +47,7 @@ return [
     'task_edit_link'  => 'Изменить',
     'task_destroy_link'  => 'Удалить',
     'form_label_task_status'  => 'Статус',
+    'task_status_destroy_flash_error' => 'Не удалось удалить статус',
 
 
 

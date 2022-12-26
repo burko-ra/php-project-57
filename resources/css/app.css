@@ -6,6 +6,10 @@
     background-color: #bbf7d0;
 }
 
+.alert-danger {
+    background-color: #fecdd3;
+}
+
 h1 {
     font-size: 3rem;
 }
