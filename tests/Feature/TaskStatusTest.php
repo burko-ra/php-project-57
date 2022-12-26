@@ -59,7 +59,7 @@ class TaskStatusTest extends TestCase
 
     public function testGuestCannotDestroyTaskStatuses(): void
     {
-        $response = $this->delete(route('task_statuses.create', [$this->taskStatus]));
+        $response = $this->delete(route('task_statuses.destroy', [$this->taskStatus]));
         $response->assertStatus(403);
     }
 
