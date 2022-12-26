@@ -93,7 +93,10 @@
                             <th>{{ __('layout.table_header_created_by') }}</th>
                             <th>{{ __('layout.table_header_assigned_to') }}</th>
                             <th>{{ __('layout.table_header_created_at') }}</th>
-                            <th>{{ __('layout.table_header_actions') }}</th>
+                            @auth
+                                <th>{{ __('layout.table_header_actions') }}</th>
+                            @endauth
+
                         </tr>
                     </thead>
                     <tbody>
@@ -102,19 +105,27 @@
                                 <td>{{ $task->id }}</td>
                                 <td>{{ $task->status_name }}</td>
                                 <td>
-                                    <a class="text-blue-600 hover:text-blue-900"
-                                        href="{{ route('tasks.show', $task) }}">
+                                    <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', $task) }}">
                                         {{ $task->name }}
                                     </a>
                                 </td>
                                 <td>{{ $task->created_by_name }}</td>
                                 <td>{{ $task->assigned_to_name }}</td>
                                 <td>{{ Carbon\Carbon::create($task->created_at)->format('d.m.Y') }}</td>
-                                <td>
-                                    <a href="{{ route('tasks.edit', $task) }}"
-                                        class="text-blue-600 hover:text-blue-900">
-                                        Изменить </a>
-                                </td>
+                                @auth()
+                                    <td>
+                                        @createdbyuser($task)
+                                            <a data-confirm="{{ __('layout.destroy_confirmation') }}" data-method="delete"
+                                                href="{{ route('tasks.destroy', $task) }}"
+                                                class="text-red-600 hover:text-red-900">
+                                                {{ __('layout.task_destroy_link') }}
+                                            </a>
+                                        @endcreatedbyuser
+
+                                        <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">
+                                            {{ __('layout.task_edit_link') }}</a>
+                                    </td>
+                                @endauth
                             </tr>
                         @endforeach
                     </tbody>

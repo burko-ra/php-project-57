@@ -7,9 +7,17 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
+use DragonCode\Contracts\Cashier\Auth\Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class, 'task', [
+            'except' => ['index', 'show'],
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +30,7 @@ class TaskController extends Controller
             'tasks.id as id',
             'tasks.name as name',
             'tasks.created_at',
+            'task_creators.id as created_by_id',
             'task_creators.name as created_by_name',
             'task_appointee.name as assigned_to_name'
         )
@@ -58,7 +67,7 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreTaskRequest $request, User $user)
+    public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
 
@@ -81,6 +90,17 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        $task = Task::select(
+            'tasks.id',
+            'tasks.name',
+            'tasks.description',
+            'task_statuses.name as status_name',
+        )
+            ->where('tasks.id', $task->id)
+            ->join('task_statuses', function ($join) {
+                $join->on('tasks.status_id', '=', 'task_statuses.id');
+            })
+            ->first();
         return view('task.show', compact('task'));
     }
 
@@ -118,16 +138,21 @@ class TaskController extends Controller
             ->route('tasks.index');
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Task  $task
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Task $task)
-    // {
-    //     //
-    // }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        flash(__('layout.task_destroy_flash_success'))->success();
+
+        return redirect()
+            ->route('tasks.index');
+    }
 
     /**
      * @return array<mixed>

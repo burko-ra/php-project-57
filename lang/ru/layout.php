@@ -44,6 +44,9 @@ return [
     'task_update_flash_success' => 'Задача успешно изменена',
     'task_destroy_flash_success' => 'Задача успешно удалена',
     'task_show_header' => "Просмотр задачи: :name",
+    'task_edit_link'  => 'Изменить',
+    'task_destroy_link'  => 'Удалить',
+    'form_label_task_status'  => 'Статус',
 
 
 

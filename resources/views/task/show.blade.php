@@ -8,12 +8,15 @@
             <div class="grid col-span-full">
                 <h2 class="mb-5">
                     {{ __('layout.task_show_header', ['name' => $task->name]) }} <a
-                        href="https://php-task-manager-ru.hexlet.app/tasks/1/edit">⚙</a>
+                        href="{{ route('tasks.edit', $task) }}">⚙</a>
                 </h2>
-                <p><span class="font-black">Имя:</span> {{ $task->name }}</p>
-                <p><span class="font-black">Статус:</span> {{ $task->status_id }}</p>
-                <p><span class="font-black">Описание:</span> {{ $task->description }}
-                </p>
+                {{-- <p><span class="font-black">Имя:</span> {{ $task->name }}</p> --}}
+                <x-definition :definition="__('layout.form_label_name')">{{ $task->name }}</x-definition>
+                <x-definition :definition="__('layout.form_label_task_status')">{{ $task->status_name }}</x-definition>
+                <x-definition :definition="__('layout.form_label_description')">{{ $task->description }}</x-definition>
+                {{-- <x-definition :definition="__('layout.form_label_labels')">{{ $task->labels }}</x-definition> --}}
+                {{-- <p><span class="font-black">Статус:</span> {{ $task->status_id }}</p>
+                <p><span class="font-black">Описание:</span> {{ $task->description }}</p> --}}
                 <p><span class="font-black">Метки:</span></p>
                 <div>
                     <div
