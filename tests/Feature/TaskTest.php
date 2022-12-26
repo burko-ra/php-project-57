@@ -22,8 +22,9 @@ class TaskTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->seed();
         $this->user = User::factory()->create();
-        $this->data = Task::factory()->make()->only('name, description');
+        $this->data = Task::factory()->make()->only('name', 'description', 'status_id', 'assigned_to_id');
         $this->task = Task::factory()->create();
     }
 
@@ -35,7 +36,7 @@ class TaskTest extends TestCase
 
     public function testGuestCanViewTaskDetails(): void
     {
-        $response = $this->get(route('tasks.show'));
+        $response = $this->get(route('tasks.show', $this->task));
         $response->assertOk();
     }
 
